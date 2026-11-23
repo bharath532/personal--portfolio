@@ -1,0 +1,195 @@
+/* ============================================================
+   Navbar — DESIGN.md: nav-bar, nav-link, button-primary-sm
+   ============================================================ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-canvas);
+  border-bottom: 1px solid var(--color-hairline);
+  padding: var(--space-sm) var(--space-lg);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+/* --- Logo --- */
+.navbar-logo {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--color-ink);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-sm);
+}
+
+.navbar-logo:hover {
+  color: var(--color-on-primary);
+}
+
+/* --- Links --- */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.navbar-link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-body);
+  border-radius: var(--radius-full);
+  padding: var(--space-xs) var(--space-sm);
+  transition: color 0.15s ease;
+}
+
+.navbar-link:hover {
+  color: var(--color-ink);
+}
+
+/* --- Theme toggle --- */
+.navbar-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas-elevated);
+  color: var(--color-ink);
+  transition: background-color 0.15s ease;
+  margin-left: var(--space-xs);
+}
+
+.navbar-theme-toggle:hover {
+  background-color: var(--color-hairline-soft);
+}
+
+.navbar-theme-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- CTA --- */
+.navbar-cta {
+  margin-left: var(--space-xs);
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-primary-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.button-primary-sm:hover {
+  background-color: #e8e8e8;
+  color: #0a0a0a;
+  transform: translateY(-1px);
+}
+
+/* --- Mobile toggle --- */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.navbar-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-ink);
+  border-radius: var(--radius-full);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar-toggle-bar.is-open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar-toggle-bar.is-open:nth-child(2) {
+  opacity: 0;
+}
+.navbar-toggle-bar.is-open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .navbar {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--color-canvas-elevated);
+    border-bottom: 1px solid var(--color-hairline);
+    padding: var(--space-sm);
+    display: none;
+  }
+
+  .navbar-links--open {
+    display: flex;
+  }
+
+  .navbar-link {
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  .navbar-theme-toggle {
+    margin-left: 0;
+    margin-top: var(--space-xs);
+    justify-content: center;
+  }
+
+  .navbar-cta {
+    margin-left: 0;
+    margin-top: var(--space-xs);
+    justify-content: center;
+  }
+}

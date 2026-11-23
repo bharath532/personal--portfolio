@@ -1,0 +1,256 @@
+/* ============================================================
+   Hero — DESIGN.md: hero-band, display-xl, button-primary/secondary
+   ============================================================ */
+
+.hero {
+  position: relative;
+  padding: var(--space-section) var(--space-lg);
+}
+
+/* --- Content grid --- */
+.hero-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* --- Text --- */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-mute);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-title {
+  font-family: var(--font-sans);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  color: var(--color-ink);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--color-body);
+  max-width: 520px;
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* --- Buttons (shared) --- */
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: var(--radius-pill);
+  padding: 10px 14px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.button-primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.button-primary:hover {
+  background: #333;
+  color: var(--color-on-primary);
+}
+
+.button-secondary {
+  background: var(--color-canvas-elevated);
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+}
+
+.button-secondary:hover {
+  background: var(--color-hairline-soft);
+  color: var(--color-ink);
+}
+
+/* --- Visual: Code window --- */
+.hero-visual {
+  position: relative;
+  display: none;
+}
+
+.hero-code-window {
+  background-color: var(--color-canvas-elevated);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-floating);
+  overflow: hidden;
+}
+
+.hero-code-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-hairline);
+  background-color: var(--color-hairline-soft);
+}
+
+.hero-code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-faint);
+}
+
+.hero-code-filename {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--color-mute);
+  margin-left: var(--space-xs);
+}
+
+.hero-code {
+  padding: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0;
+  overflow-x: auto;
+  color: var(--color-body);
+}
+
+/* --- Syntax tokens --- */
+.tok-kw { color: var(--color-link); }
+.tok-var { color: var(--color-ink); }
+.tok-punct { color: var(--color-mute); }
+.tok-fn { color: var(--color-ink); }
+.tok-str { color: var(--color-violet); }
+.tok-num { color: var(--color-cyan); }
+.tok-prop { color: var(--color-body); }
+
+/* --- Floating tech pills --- */
+.hero-tech-pill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--color-ink);
+  background-color: var(--color-canvas-elevated);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  box-shadow: var(--shadow-whisper);
+  animation: hero-float 4s ease-in-out infinite;
+}
+
+.hero-tech-pill--react {
+  top: -14px;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.hero-tech-pill--node {
+  top: 35%;
+  right: -18px;
+  animation-delay: 1s;
+}
+
+.hero-tech-pill--mongo {
+  bottom: 20%;
+  left: -18px;
+  animation-delay: 2s;
+}
+
+.hero-tech-pill--express {
+  bottom: -14px;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ============================================================
+   Responsive — Mobile-first
+   ============================================================ */
+
+/* --- Tablet & up: show visual below text --- */
+@media (min-width: 641px) {
+  .hero-visual {
+    display: block;
+    max-width: 480px;
+  }
+}
+
+/* --- Desktop: two-column layout --- */
+@media (min-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .hero-visual {
+    max-width: none;
+  }
+}
+
+/* --- Small mobile adjustments --- */
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-3xl) var(--space-md);
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -1.28px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button-primary,
+  .button-secondary {
+    width: 100%;
+  }
+}

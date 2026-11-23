@@ -1,0 +1,93 @@
+/* ============================================================
+   Custom Cursor — instant inner dot + trailing outer ring
+   Only active on devices with a fine, hovering pointer.
+   ============================================================ */
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.2s ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* --- Inner dot: 6px, follows instantly --- */
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+/* --- Outer ring: 32px, eased trailing follow --- */
+.custom-cursor-ring {
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+}
+
+.custom-cursor-ring-shape {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: scale(1);
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+/* --- Hover: grow and tint the ring --- */
+.custom-cursor.is-hovering .custom-cursor-ring-shape {
+  transform: scale(1.6);
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+/* --- Keep it visible on the light canvas --- */
+[data-theme='light'] .custom-cursor-dot {
+  background-color: #171717;
+  box-shadow: none;
+}
+
+[data-theme='light'] .custom-cursor-ring-shape {
+  border-color: rgba(23, 23, 23, 0.4);
+}
+
+/* --- Desktop only: hide the native cursor and show ours --- */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* --- Reduced motion: keep the ring snappy --- */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-ring-shape {
+    transition-duration: 0.01ms;
+  }
+}

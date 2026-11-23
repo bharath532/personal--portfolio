@@ -1,0 +1,25 @@
+/* ============================================================
+   App Layout & Page-wide Background
+   DESIGN.md: canvas + brand gradient stops (develop/preview/ship)
+   One continuous atmosphere — sections are transparent so the
+   gradient flows across the whole page in both themes.
+   ============================================================ */
+
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(ellipse 55% 35% at 15% 5%, rgba(0, 124, 240, 0.10), transparent),
+    radial-gradient(ellipse 45% 30% at 85% 20%, rgba(121, 40, 202, 0.08), transparent),
+    radial-gradient(ellipse 50% 35% at 70% 50%, rgba(255, 0, 128, 0.06), transparent),
+    radial-gradient(ellipse 45% 30% at 25% 75%, rgba(0, 223, 216, 0.08), transparent),
+    radial-gradient(ellipse 40% 25% at 60% 95%, rgba(249, 203, 40, 0.05), transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.app main {
+  flex: 1;
+}
